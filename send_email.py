@@ -1,5 +1,7 @@
 import smtplib, ssl
 import argparse
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 
 def sendEmail(sender,receiver,pd):
     """
@@ -8,19 +10,30 @@ def sendEmail(sender,receiver,pd):
     """
     port = 465  # For SSL
     smtp_server = "smtp.gmail.com"
-    sender_email = sender  # Enter your address
-    receiver_email = receiver  # Enter receiver address
+    sender_email = sender  
+    receiver_email = receiver 
     password = pd
-    message = """\
-    Subject: Hi there
+    msg = MIMEMultipart("alternative")# create a message
 
-    This message is sent from Python."""
+    # setup the parameters of the message
+    msg['From']= sender
+    msg['To']= receiver
+    msg['Subject']= ""# subject
+
+    message = """\
+    Hi,
+    How are you?
+    Email from python"""
+        
+    # add in the message body
+    msg.attach(MIMEText(message, 'plain'))
+        
     # Create a secure SSL context
     context = ssl.create_default_context()
 
     with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
         server.login(sender_email, password)
-        server.sendmail(sender_email, receiver_email, message)
+        server.sendmail(sender_email, receiver_email, msg.as_string())
 
 if __name__ == '__main__':
 	"""
