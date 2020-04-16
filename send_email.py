@@ -8,8 +8,8 @@ def sendEmail(sender,receiver,pd):
     """
     port = 465  # For SSL
     smtp_server = "smtp.gmail.com"
-    sender_email = sender  # Enter your address
-    receiver_email = receiver  # Enter receiver address
+    sender_email = sender 
+    receiver_email = receiver 
     password = pd
     message = """\
     Subject: Hi there
