@@ -10,11 +10,7 @@ def sendEmail(sender,receiver,pd):
     """
     port = 465  # For SSL
     smtp_server = "smtp.gmail.com"
-<<<<<<< HEAD
     sender_email = sender  
-=======
-    sender_email = sender 
->>>>>>> 77b9cf16361ad9f8bf61c8bef7308138e922caac
     receiver_email = receiver 
     password = pd
     msg = MIMEMultipart("alternative")# create a message
